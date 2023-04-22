@@ -25,7 +25,7 @@ app.use(cors({
 const io = require("socket.io")(8900,{
     cors:{
         origin:["http://localhost:3000","https://v-share.fun/", "https://main.davhptqe3sdlw.amplifyapp.com"],
-        methods:"*"
+        methods:"GET,HEAD,PUT,PATCH,POST,DELETE"
     },
 })
 
