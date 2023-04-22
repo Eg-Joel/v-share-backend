@@ -16,21 +16,18 @@ mongoose.connect(process.env.MONGODB).then(()=>{
     console.log("database connected");
 })
 
-// app.use(cors({
-//     origin: "https://main.davhptqe3sdlw.amplifyapp.com",
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true
-//   }));
-
-  const corsOptions = {
-    origin: ["http://localhost:3000", "https://v-share.fun", "https://main.davhptqe3sdlw.amplifyapp.com"],
+app.use(cors({
+    origin: "https://main.davhptqe3sdlw.amplifyapp.com",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true
-  };
+  }));
 
-  app.use(cors(corsOptions));
-const io = require("socket.io")(8900,{
-    cors: corsOptions
+  const httpServer = require("http").createServer(app);
+const io = require("socket.io")(httpServer,{
+    cors:{
+        origin:["http://localhost:3000","https://v-share.fun/", "https://main.davhptqe3sdlw.amplifyapp.com"],
+        methods:["GET","POST"],
+    },
 })
 
 let users = []
