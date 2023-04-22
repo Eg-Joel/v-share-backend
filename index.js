@@ -30,10 +30,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 
   app.use(cors(corsOptions));
 const io = require("socket.io")(8900,{
-    cors:{
-        origin:["http://localhost:3000","https://v-share.fun/", "https://main.davhptqe3sdlw.amplifyapp.com"],
-        methods:"GET,HEAD,PUT,PATCH,POST,DELETE"
-    },
+    cors: corsOptions
 })
 
 let users = []
