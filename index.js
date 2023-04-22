@@ -27,6 +27,7 @@ const io = require("socket.io")(httpServer,{
     cors:{
         origin:["http://localhost:3000","https://v-share.fun/", "https://main.davhptqe3sdlw.amplifyapp.com"],
         methods:["GET","POST"],
+        credentials: true
     },
 })
 
