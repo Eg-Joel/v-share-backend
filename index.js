@@ -68,7 +68,12 @@ io.on("connection", (socket) => {
    
   })
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+    origin:["hthttps://main.davhptqe3sdlw.amplifyapp.com"],
+    methods:"GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials:true,
+}))
 app.use(express.json())
 app.use("/api/user",userRouter)
 app.use("/api/post",postRouter)
