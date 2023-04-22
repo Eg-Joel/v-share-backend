@@ -16,9 +16,16 @@ mongoose.connect(process.env.MONGODB).then(()=>{
     console.log("database connected");
 })
 
+app.use(cors({
+    origin: "https://main.davhptqe3sdlw.amplifyapp.com",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+   
+  }));
+
 const io = require("socket.io")(8900,{
     cors:{
-        origin:["http://localhost:3000","https://v-share.fun/", "https://main.davhptqe3sdlw.amplifyapp.com"]
+        origin:["http://localhost:3000","https://v-share.fun/", "https://main.davhptqe3sdlw.amplifyapp.com"],
+        methods:"*"
     },
 })
 
@@ -69,11 +76,7 @@ io.on("connection", (socket) => {
   })
 
 // app.use(cors());
-app.use(cors({
-    origin: "https://main.davhptqe3sdlw.amplifyapp.com",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-   
-  }));
+
 app.use(express.json())
 app.use("/api/user",userRouter)
 app.use("/api/post",postRouter)
