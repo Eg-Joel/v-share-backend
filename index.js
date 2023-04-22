@@ -80,6 +80,13 @@ app.use("/api/post",postRouter)
 app.use("/api/admin",adminRouter)
 app.use("/api/conversation",conversationRouter)
 app.use("/api/message",messageRouter)
+
+// Set CORS headers
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 app.listen(5000,()=>{
     console.log("server is running");
 })
