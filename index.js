@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 app.use(cors({
     origin: "https://main.davhptqe3sdlw.amplifyapp.com",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-   
+    credentials: true
   }));
 
 const io = require("socket.io")(8900,{
