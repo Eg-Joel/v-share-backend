@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
   console.log("server is running");
 })
 
-app.use(cors({
+app.use(cors({ 
     origin: ["https://main.davhptqe3sdlw.amplifyapp.com","http://localhost:3000","https://v-share.fun"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     
