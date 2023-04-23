@@ -8,12 +8,15 @@ const adminRouter = require("./router/admin")
 const conversationRouter=require("./router/conversations")
 const messageRouter = require("./router/messages")
 const cors = require("cors");
-
+const socket = require('socket.io')
 dotenv.config()
 
 
 mongoose.connect(process.env.MONGODB).then(()=>{
     console.log("database connected");
+})
+const server = app.listen(5000,()=>{
+  console.log("server is running");
 })
 
 app.use(cors({
@@ -22,10 +25,10 @@ app.use(cors({
     credentials: true
   }));
 
-  const httpServer = require("http").createServer(app);
-const io = require("socket.io")(httpServer,{
+  
+const io = socket(server,{
     cors:{
-        origin:["http://localhost:3000","https://v-share.fun/", "https://main.davhptqe3sdlw.amplifyapp.com"],
+        origin:["http://localhost:3000"],
         methods:["GET","POST"],
         credentials: true
     },
@@ -88,7 +91,4 @@ app.use("/api/message",messageRouter)
 
 // Set CORS headers
 
-app.listen(5000,()=>{
-    console.log("server is running");
-})
 
