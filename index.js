@@ -20,17 +20,17 @@ const server = app.listen(5000,()=>{
 })
 
 app.use(cors({
-    origin: "https://main.davhptqe3sdlw.amplifyapp.com",
+    origin: ["https://main.davhptqe3sdlw.amplifyapp.com","http://localhost:3000","https://v-share.fun"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true
+    
   }));
 
   
 const io = socket(server,{
     cors:{
-        origin:["http://localhost:3000"],
+        origin:["http://localhost:3000","https://main.davhptqe3sdlw.amplifyapp.com"],
         methods:["GET","POST"],
-        credentials: true
+        
     },
 })
 
