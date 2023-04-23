@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 })
 
 app.use(cors({ 
-    origin: ["https://main.davhptqe3sdlw.amplifyapp.com","http://localhost:3000","https://v-share.fun"],
+    origin: ["http://localhost:3000","https://main.davhptqe3sdlw.amplifyapp.com","https://v-share.fun"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ['token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
   }));

@@ -67,7 +67,8 @@ exports.postLike = async(req,res)=>{
         
        
     const post = await Post.findById(req.params.id)
- 
+ console.log(req.params.id);
+ console.log(req.user.id);
     if(!post.like.includes(req.user.id)){
         if(post.dislike.includes(req.user.id)){
             
