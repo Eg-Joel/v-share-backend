@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 app.use(cors({ 
     origin: ["https://main.davhptqe3sdlw.amplifyapp.com","http://localhost:3000","https://v-share.fun"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: ["Content-Type", "Authorization"]
+    allowedHeaders: ['token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
   }));
 
   
@@ -81,7 +81,7 @@ io.on("connection", (socket) => {
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+  res.header("Access-Control-Allow-Headers", "token,Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
   next();
 });
 app.use(express.json())
