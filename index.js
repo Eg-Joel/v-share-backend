@@ -16,12 +16,12 @@ mongoose.connect(process.env.MONGODB).then(()=>{
     console.log("database connected");
 })
 
-app.use(cors({ 
-    origin: ["https://main.davhptqe3sdlw.amplifyapp.com","http://localhost:3000","https://v-share.fun"],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+// app.use(cors({ 
+//     origin: ["https://main.davhptqe3sdlw.amplifyapp.com","http://localhost:3000","https://v-share.fun"],
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     
-  }));
-
+//   }));
+app.use(cors())
   
 const io = socket(8900,{
     cors:{
