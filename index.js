@@ -15,7 +15,7 @@ dotenv.config()
 mongoose.connect(process.env.MONGODB).then(()=>{
     console.log("database connected");
 })
-const server = app.listen(5000,()=>{
+ app.listen(5000,()=>{
   console.log("server is running");
 })
 
@@ -26,7 +26,7 @@ app.use(cors({
   }));
 
   
-const io = socket(server,{
+const io = socket(8900,{
     cors:{
         origin:["http://localhost:3000","https://main.davhptqe3sdlw.amplifyapp.com"],
         methods:["GET","POST"],
