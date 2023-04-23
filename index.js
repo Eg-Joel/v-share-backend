@@ -15,9 +15,6 @@ dotenv.config()
 mongoose.connect(process.env.MONGODB).then(()=>{
     console.log("database connected");
 })
- app.listen(5000,()=>{
-  console.log("server is running");
-})
 
 app.use(cors({ 
     origin: ["https://main.davhptqe3sdlw.amplifyapp.com","http://localhost:3000","https://v-share.fun"],
@@ -82,7 +79,11 @@ io.on("connection", (socket) => {
 
 // app.use(cors());
 
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(express.json())
 app.use("/api/user",userRouter)
 app.use("/api/post",postRouter)
@@ -92,4 +93,7 @@ app.use("/api/message",messageRouter)
 
 // Set CORS headers
 
+app.listen(5000,()=>{
+  console.log("server is running");
+})
 
