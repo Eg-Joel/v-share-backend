@@ -93,7 +93,7 @@ app.use("/api/message",messageRouter)
 
 // Set CORS headers
 
-app.listen(5000,()=>{
+app.listen(3000,()=>{
   console.log("server is running");
 })
 
