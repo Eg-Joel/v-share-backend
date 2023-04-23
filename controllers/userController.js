@@ -117,7 +117,6 @@ exports.verifyEmail = async (req,res)=>{
 
 exports.login = async(req,res)=>{
 
-    res.header("Access-Control-Allow-Origin", "*");
     const error = validationResult(req)
     // if(!error.isEmpty()){
     //     return res.status(400).json('some error occured')
