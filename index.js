@@ -1,4 +1,5 @@
 const express = require("express")
+const http = require("http");
 const app = express()
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
@@ -21,9 +22,9 @@ app.use(cors({
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ['token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
   }));
-
+  const server = http.createServer(app)
   
-const io = socket(8900,{
+const io = socket(server,{
     cors:{
         origin:["http://localhost:3000","https://main.davhptqe3sdlw.amplifyapp.com","https://v-share.fun"],
         methods:["GET","POST"],
@@ -93,7 +94,7 @@ app.use("/api/message",messageRouter)
 
 // Set CORS headers
 
-app.listen(3000,()=>{
+server.listen(3000,()=>{
   console.log("server is running");
 })
 
