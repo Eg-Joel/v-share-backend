@@ -65,8 +65,7 @@ exports.updatePost=async (req,res)=>{
 exports.postLike = async(req,res)=>{
     try {
         
-      console.log(req.params.id);
- console.log(req.user.id); 
+      
     const post = await Post.findById(req.params.id)
 
     if(!post.like.includes(req.user.id)){
@@ -143,8 +142,8 @@ exports.postDisLike = async(req,res)=>{
 }
 exports.comments = async(req,res)=>{
 
-    try {
-      
+    // try {
+      console.log(req.body);
         const {comment,postid,profile} = req.body
         const comments ={
             user:req.user.id,
@@ -168,9 +167,9 @@ exports.comments = async(req,res)=>{
         await post.save()
         res.status(200).json(post)
         
-    } catch (error) {
-        res.status(500).json("internal error occured")  
-    }
+    // } catch (error) {
+    //     res.status(500).json("internal error occured")  
+    // }
 }
 
 exports.commentDelete = async(req,res)=>{
