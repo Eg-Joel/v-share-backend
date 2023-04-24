@@ -141,9 +141,9 @@ exports.postDisLike = async(req,res)=>{
 }
 }
 exports.comments = async(req,res)=>{
-
-    // try {
-      console.log(req.body);
+  console.log(req?.body);
+    try {
+      
         const {comment,postid,profile} = req.body
         const comments ={
             user:req.user.id,
@@ -167,9 +167,9 @@ exports.comments = async(req,res)=>{
         await post.save()
         res.status(200).json(post)
         
-    // } catch (error) {
-    //     res.status(500).json("internal error occured")  
-    // }
+    } catch (error) {
+        res.status(500).json("internal error occured")  
+    }
 }
 
 exports.commentDelete = async(req,res)=>{
