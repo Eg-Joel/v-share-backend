@@ -141,7 +141,7 @@ exports.postDisLike = async(req,res)=>{
 }
 }
 exports.comments = async(req,res)=>{
-  console.log(req?.body);
+  
     try {
       
         const {comment,postid,profile} = req.body
@@ -234,6 +234,29 @@ exports.followingUser = async(req,res)=>{
      }
     }
 
+    
+exports.followingUserss = async(req,res)=>{
+  try {
+     const user = await User.findById(req.params.id)
+  
+     const followinguser = await Promise.all(
+         user.following.map((item)=>{
+             return User.findById(item)
+         })
+     )
+     let followingList =[]
+     followinguser.map((person)=>{
+         const {email, password , phonenumber , following, followers , ...others}=person._doc
+         followingList.push(others)
+     })
+     
+
+     res.status(200).json({  followingList   });
+     // res.status(200).json(followingList)
+  } catch (error) {
+      return res.status(500).json("internal server error occured")
+  }
+ }
     exports.followingUsers = async(req,res)=>{
       try {
        

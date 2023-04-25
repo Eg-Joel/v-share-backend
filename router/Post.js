@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const { createPost, getPost, updatePost, postLike, postDisLike, comments, deletePost, followingUser, followersr, followers, reportPost, allReports, rejectReport, resolveReport, followingUsers, commentDelete, LikedUsers } = require('../controllers/PostController')
+const { createPost, getPost, updatePost, postLike, postDisLike, comments, deletePost, followingUser, followersr, followers, reportPost, allReports, rejectReport, resolveReport, followingUsers, commentDelete, LikedUsers, followingUserss } = require('../controllers/PostController')
 const { verifyToken,isAdmin } = require("../middlewares/verifyToken")
 
 //create post
@@ -29,6 +29,8 @@ router.delete("/deletepost/:id",verifyToken , deletePost)
 
 //get a following user
 router.get("/following/:id",verifyToken, followingUser)
+
+router.get("/followingss/:id",verifyToken,followingUserss)
 
 //get fillowing users
 router.get("/followingUser/:id",verifyToken,followingUsers)
