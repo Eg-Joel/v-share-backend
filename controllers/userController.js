@@ -336,8 +336,8 @@ exports.followerPost = async(req,res)=>{
         
        
         const results = allPosts.slice(startIndex, endIndex);
-        // const count = await Post.countDocuments({ user: user._id, isDeleted: false });
-        const count = results.length
+         const count = await Post.countDocuments({ user: user._id, isDeleted: false });
+       
         const totalPages = Math.ceil((count + followerspost.length) / limit);
         
         res.status(200).json({ posts: results, totalPages: totalPages , count: count})
