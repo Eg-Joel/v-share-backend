@@ -312,49 +312,14 @@ exports.unFollowUser = async (req, res) => {
     }
 }
 
-// exports.following = async(req,res)=>{
-//     if(req.params.id !== req.user.id){
-       
-//         try {
-//         const user = await User.findById(req.params.id)
-//         const otheruser = await User.findById(req.user.id)
-       
-
-//         if(!user.followers.includes(req.user.id)){
-//             await user.updateOne({$push:{followers:req.user.id}})
-//             await otheruser.updateOne({$push:{following:req.params.id}})
-//             await Notification.create({
-//                 type: "follow",
-//                 user: req.user.id,
-//                 friend: req.params.id,
-//                 content: 'Started Following You'
-//             })
-//           let updateUser = await otheruser.save()
-       
-//             return res.status(200).json(updateUser)
-
-//         }else{
-//             await user.updateOne({$pull:{followers:req.user.id}})
-//             await otheruser.updateOne({$pull:{following:req.params.id}})
-//             let updateUser =await otheruser.save()
-           
-//             return res.status(200).json(updateUser)
-//         }
-//     }catch (err) {
-//         console.log(err);
-//         return res.status(500).json({ error: "Server error" });
-//       }
-//     }
-//     else{
-//         return res.status(400).json("you can't follow yourself")
-//     }
-// }
 exports.followerPost = async(req,res)=>{
     try {
         
         const user = await User.findById(req.params.id)
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
 
         const followerspost= await Promise.all(
             user.following.map((item)=>{
@@ -369,13 +334,13 @@ exports.followerPost = async(req,res)=>{
         const allPosts = userPost.concat(...followerspost)
         allPosts.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)) 
         
-        const startIndex = (page - 1) * limit;
-        const endIndex = page * limit;
+       
         const results = allPosts.slice(startIndex, endIndex);
-        const count = await Post.countDocuments({ user: user._id, isDeleted: false });
+        // const count = await Post.countDocuments({ user: user._id, isDeleted: false });
+        const count = results.length
         const totalPages = Math.ceil((count + followerspost.length) / limit);
         
-        res.status(200).json({ posts: results, totalPages: totalPages })
+        res.status(200).json({ posts: results, totalPages: totalPages , count: count})
     } catch (error) {
         return res.status(500).json("internal server error occured")
     }
