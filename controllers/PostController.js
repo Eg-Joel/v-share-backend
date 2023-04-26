@@ -350,7 +350,7 @@ exports.reportPost=async (req, res) => {
 
 exports.allReports=async (req, res) => {
   try {
-    const reports = await Report.find();
+    const reports = await Report.find().sort({ createdAt: 'desc' });
     res.status(200).json(reports);
   } catch (err) {
     console.log(err);
