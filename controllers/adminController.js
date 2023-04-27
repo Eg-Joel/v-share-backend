@@ -88,7 +88,15 @@ module.exports = {
             res.json({status:false , message:'internal Server error',error})
         }
     },
-
+GetAmount: async(req,res)=>{
+try {
+    const userCount = await adminServies.userCount()
+    const postCount = await adminServies.postCount()
+    res.status(200).json(userCount,postCount);
+} catch (error) {
+    res.json({status:false , message:'internal Server error',error})
+}
+},
     // post management
     getPosts:async(req,res)=>{
         try {

@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const { body, validationResult } = require('express-validator')
-const { adminLogin, getUsers, searchUser, banUser, unBanUser, getPosts, searchPosts, banPost, unBanPost, getReports } = require("../controllers/adminController");
+const { adminLogin, getUsers, searchUser, banUser, unBanUser, getPosts, searchPosts, banPost, unBanPost, getReports, GetAmount } = require("../controllers/adminController");
 const { verifyToken, isAdmin } = require('../middlewares/verifyToken');
 
 
@@ -14,7 +14,7 @@ router.get('/users/:pageNumber',verifyToken, isAdmin,getUsers)
 router.get('/searchUsers/:value',verifyToken, isAdmin,searchUser)
 router.patch('/banUser',verifyToken, isAdmin,banUser)
 router.patch('/unBanUser',verifyToken, isAdmin,unBanUser)
-
+router.get('/getamount',verifyToken,isAdmin,GetAmount)
 // post management
 router.get('/posts/:pageNumber',verifyToken, isAdmin,getPosts)
 router.get('/searchPosts/:value',verifyToken, isAdmin,searchPosts)
