@@ -14,7 +14,7 @@ router.get('/users/:pageNumber',verifyToken, isAdmin,getUsers)
 router.get('/searchUsers/:value',verifyToken, isAdmin,searchUser)
 router.patch('/banUser',verifyToken, isAdmin,banUser)
 router.patch('/unBanUser',verifyToken, isAdmin,unBanUser)
-router.get('/getamount',verifyToken,isAdmin,GetAmount)
+router.get('/getamount',GetAmount)
 // post management
 router.get('/posts/:pageNumber',verifyToken, isAdmin,getPosts)
 router.get('/searchPosts/:value',verifyToken, isAdmin,searchPosts)
