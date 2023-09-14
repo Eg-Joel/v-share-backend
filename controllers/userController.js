@@ -485,7 +485,6 @@ exports.EditUsers = async (req,res)=>{
        
         let updateFields = req.body.updateFields;
        
-          console.log(updateFields,"up");
         const user = await User.findByIdAndUpdate(userId,updateFields  , { new: true }  );
     
         
