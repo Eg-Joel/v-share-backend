@@ -26,7 +26,7 @@ app.use(cors({
   
 const io = socket(server,{
     cors:{
-        origin:["http://localhost:3000","https://main.dr7advhn9xyid.amplifyapp.com/login","https://v-share.fun"],
+        origin:["http://localhost:3000","https://main.dr7advhn9xyid.amplifyapp.com/","https://v-share.fun"],
         methods:["GET","POST"],
         
     },
