@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB).then(()=>{
 })
 
 app.use(cors({ 
-    origin: ["http://localhost:3000","https://v-share-six.vercel.app","https://v-share.onrender.com"],
+    origin: ["http://localhost:3000","https://v-share-frontend.vercel.app/","https://v-share.onrender.com"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ['token', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept','header'],
   }));
@@ -26,7 +26,7 @@ app.use(cors({
   
 const io = socket(server,{
     cors:{
-        origin:["http://localhost:3000","https://v-share-six.vercel.app","https://v-share.onrender.com"],
+        origin:["http://localhost:3000","https://v-share-frontend.vercel.app/","https://v-share.onrender.com"],
         methods:["GET","POST"],
         
     },
